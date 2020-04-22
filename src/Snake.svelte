@@ -2,6 +2,13 @@
   import { renderable, height, width } from "./game";
   import { writable } from "svelte/store";
   import { createEventDispatcher } from "svelte";
+  import { swipe, Hammer } from "svelte-hammer";
+  // const { swipe, Hammer } = hammer; // todo -- this should work -- import { swipe } from "svelte-hammer";
+
+  // const hammertime = new Hammer(window);
+  // console.log(hammertime);
+
+  // hammertime.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
 
   const dispatch = createEventDispatcher();
   let started = false;
@@ -99,24 +106,24 @@
     interval.set($interval + 1);
   });
 
-  function onKeyDown(e) {
-    switch (e.key) {
-      case "ArrowLeft":
+  function controlSwitch(dir) {
+    switch (dir) {
+      case "left":
         started = true;
         nextX = -1;
         nextY = 0;
         break;
-      case "ArrowUp":
+      case "up":
         started = true;
         nextX = 0;
         nextY = -1;
         break;
-      case "ArrowRight":
+      case "right":
         started = true;
         nextX = 1;
         nextY = 0;
         break;
-      case "ArrowDown":
+      case "down":
         started = true;
         nextX = 0;
         nextY = 1;
@@ -125,6 +132,21 @@
         break;
     }
   }
+
+  function onKeyDown(e) {
+    controlSwitch(
+      {
+        ArrowLeft: "left",
+        ArrowRight: "right",
+        ArrowDown: "down",
+        ArrowUp: "up"
+      }[e.key]
+    );
+  }
+
+  const onSwipe = dir => () => {
+    controlSwitch(dir);
+  };
 
   function reset() {
     started = false;
@@ -139,6 +161,12 @@
   }
 </script>
 
-<svelte:window on:keydown={onKeyDown} />
+<svelte:window
+  on:keydown={onKeyDown}
+  use:swipe={{ direction: Hammer.DIRECTION_ALL }}
+  on:swipeleft={onSwipe('left')}
+  on:swiperight={onSwipe('right')}
+  on:swipeup={onSwipe('up')}
+  on:swipedown={onSwipe('down')} />
 
 <slot {reset} />
