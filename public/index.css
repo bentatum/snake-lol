@@ -1,0 +1,8 @@
+:root {
+    --color--primary: blueviolet;
+    --color--primary--darken-1: #6e22b5;
+    --color--primary--darken-2: #531a88;
+    --color--primary--darken-3: #3e1366;
+    --color--primary--darken-4: #220b38;
+    /* --color-primary: blueviolet; */
+}
