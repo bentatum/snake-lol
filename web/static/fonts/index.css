@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Object Sans';
+    font-smoothing: antialiased;
+    src: url("ObjectSans/ObjectSans-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Object Sans';
+    font-weight: 700;
+    src: url("ObjectSans/ObjectSans-Heavy.otf") format("opentype");
+}
