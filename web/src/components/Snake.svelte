@@ -20,6 +20,7 @@
   let gridSizeY = Math.floor($height / tileSize);
   let nextY = 0;
   let nextX = 0;
+  let gameOver = false;
 
   // snake
   let defaultTailSize = 2;
@@ -72,7 +73,7 @@
     context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 
     // paint snake
-    context.fillStyle = "green";
+    context.fillStyle = "#20ff1d";
     for (var i = 0; i < snakeTrail.length; i++) {
       context.fillRect(
         snakeTrail[i].x * tileSize,

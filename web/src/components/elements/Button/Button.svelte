@@ -26,12 +26,10 @@
 
   const getTextColorClass = () => {
     switch (color) {
-      case "primary":
-        return "primary-500";
-      case "secondary":
-        return "secondary-500";
       case "gray":
-        return "gray-700";
+        return "black";
+      case "secondary":
+      case "primary":
       case "black":
         return "white";
       default:
@@ -55,7 +53,7 @@
     [`bg-${getBgColorClass()}`]: true,
     [`text-${getTextColorClass()}`]: true,
     [`text-${getTextSizeClass()}`]: true,
-    "rounded text-base leading-none font-sans": true,
+    "rounded text-base leading-none font-sans font-medium": true,
     "px-2 h-7": size === "small",
     "px-4 h-12": size === "medium",
     "px-5 h-14": size === "large",

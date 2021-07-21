@@ -42,7 +42,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        '"Object Sans"',
+        '"Roboto"',
         "ui-sans-serif",
         "system-ui",
         "-apple-system",
