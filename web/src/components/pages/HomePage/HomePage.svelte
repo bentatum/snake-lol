@@ -28,23 +28,32 @@
             stop();
             isGameOver = true;
           }}
-        />
+        >
+          <div
+            class="absolute right-2 bottom-2 font-mono text-xs text-white z-10"
+          >
+            {new Date($time * 1000).toISOString().substr(11, 8)}
+          </div>
+          {#if isGameOver}
+            <div class="z-10 absolute text-center w-full space-y-7 p-7">
+              <h2 class="text-white font-mono font-black text-xl">Game over</h2>
+              <div class="grid grid-cols-2 gap-2">
+                <Button
+                  on:click={() => {
+                    reset();
+                    start();
+                    isGameOver = false;
+                  }}>Start over</Button
+                >
+                <Button disabled class="secondary">Continue</Button>
+                <Button disabled class="col-span-2" color="primary"
+                  >Save score</Button
+                >
+              </div>
+            </div>
+          {/if}
+        </Snake>
       </Canvas>
-      <div class="absolute right-2 bottom-2 font-mono text-xs text-white z-10">
-        {new Date($time * 1000).toISOString().substr(11, 8)}
-      </div>
-      {#if isGameOver}
-        <h2 class="text-white font-mono font-black text-xl z-10 absolute">
-          Game over
-        </h2>
-      {/if}
-    </div>
-    <div class="grid grid-cols-2 gap-2 absolute mt-7 w-full">
-      {#if isGameOver}
-        <Button>Start over</Button>
-        <Button class="secondary">Continue</Button>
-        <Button class="col-span-2" color="primary">Save score</Button>
-      {/if}
     </div>
   </div>
 </div>
