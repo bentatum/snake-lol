@@ -31,6 +31,7 @@ module.exports = {
     // purgeLayersByDefault: true,
   },
   purge: [],
+  darkMode: "media",
   theme: {
     extend: {
       colors: {
